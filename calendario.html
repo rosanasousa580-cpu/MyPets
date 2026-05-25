@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendário - My Pets</title>
+    
+    <!-- ✅ FIREBASE NA ORDEM CERTA -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="zfirebase-config.js"></script>
+
+    <!-- ✅ ESTILOS -->
+    <link rel="stylesheet" href="zstyle.css">
+    <link rel="stylesheet" href="calendario-style.css">
+
+</head>
+<body>
+
+<div class="bg">
+  <img src="https://img.magnific.com/vetores-gratis/fundo-de-impressoes-de-patas-desenhadas-a-mao_23-2151123098.jpg?semt=ais_hybrid&w=740&q=80" alt="">
+</div>
+
+<!-- ✅ CABEÇALHO IGUAL A HOME -->
+<header class="cabecalho">
+    <button class="btn-menu" id="btnMenu">☰</button>
+    <h1 class="nome-app">Calendário</h1>
+    <button class="btn-notif" id="btnNotif">🔔</button>
+</header>
+
+<!-- ✅ MENU LATERAL IGUAL A HOME -->
+<div class="menu-lateral" id="menuLateral">
+    <div class="menu-conteudo">
+        <div class="menu-perfil">
+            <img src="https://via.placeholder.com/80" alt="Foto perfil" class="foto-perfil">
+            <p id="nomePerfilMenu">Usuário</p>
+        </div>
+
+        <div class="item-menu" id="linkMeuPerfil">
+            <p>👤 Meu Perfil</p>
+        </div>
+        <div class="item-menu" id="linkHome">
+            <p>🐶 Meus Pets</p>
+        </div>
+        <div class="item-menu">
+            <p>➕ Adicionar Pet</p>
+        </div>
+        <div class="item-menu">
+            <p>⚙️ Configurações</p>
+        </div>
+        <div class="item-menu">
+            <p>ℹ️ Sobre</p>
+        </div>
+        
+        <div class="divisor"></div>
+        
+        <div class="item-menu sair" id="btnSairMenu">
+            <p>🚪 Sair</p>
+        </div>
+    </div>
+</div>
+
+<div class="fundo-overlay" id="fundoOverlay"></div>
+
+<!-- ✅ CONTEÚDO -->
+<div class="container-page">
+
+    <!-- BOTÕES DE FILTRO E HOJE -->
+    <div class="controles-topo">
+        <button id="btnHoje" class="btn-hoje">📅 Hoje</button>
+        
+        <div class="filtros">
+            <button class="filtro-btn ativo" data-tipo="todos">Todos</button>
+            <button class="filtro-btn" data-tipo="consulta">🩺 Consulta</button>
+            <button class="filtro-btn" data-tipo="vacina">💉 Vacina</button>
+            <button class="filtro-btn" data-tipo="banho">🛁 Banho</button>
+            <button class="filtro-btn" data-tipo="outro">📌 Outros</button>
+        </div>
+    </div>
+
+    <!-- CALENDÁRIO VISUAL -->
+    <div class="calendario-samsung">
+        <div class="cabecalho-calendario">
+            <button id="btnMesAnterior">&lt;</button>
+            <h3 id="mesAnoAtual">Maio 2026</h3>
+            <button id="btnProximoMes">&gt;</button>
+        </div>
+
+        <div class="dias-semana">
+            <span>D</span>
+            <span>S</span>
+            <span>T</span>
+            <span>Q</span>
+            <span>Q</span>
+            <span>S</span>
+            <span>S</span>
+        </div>
+
+        <div class="grade-dias" id="gradeDias"></div>
+    </div>
+
+    <div class="home-card">
+        <h2>Próximos Eventos</h2>
+        <p>Consultas, vacinas e compromissos</p>
+    </div>
+
+    <!-- LISTA DE EVENTOS -->
+    <div class="lista-itens" id="listaEventos">
+        <p class="texto-vazio">Nenhum evento agendado ainda 📅</p>
+    </div>
+<!-- 🐶 SEÇÃO DE TEMPO COMIGO - UM CARTÃO PARA CADA PET -->
+<div id="listaCartoesTempo">
+    <!-- Os cartões serão GERADOS AQUI automaticamente pelo JavaScript -->
+</div>
+
+<!-- OVERLAY DE EDIÇÃO (Único para todos) -->
+<div class="overlay-cadastro" id="overlayTempo">
+    <div class="container-cadastro-pet">
+        <span class="fechar-cadastro" id="fecharTempo">&times;</span>
+        <h3>Alterar Data de Chegada</h3>
+        <form id="formTempo">
+            <input type="date" id="dataChegadaInput" required>
+            <input type="hidden" id="petIdAlvo"> <!-- Guarda qual pet está editando -->
+            <button type="submit" class="btn-salvar-evento">Salvar Data</button>
+        </form>
+    </div>
+</div>
+
+<!-- ✅ NOTIFICAÇÃO IGUAL A HOME -->
+<div id="caixaNotificacao" class="caixa-notificacao">
+    <div class="conteudo-notificacao">
+        <p id="textoNotificacao">Você não tem novas notificações 🔔</p>
+        <button class="btn-ok">OK</button>
+    </div>
+</div>
+
+<div class="overlay-cadastro" id="overlayForm">
+    <div class="container-cadastro-pet">
+        <span class="fechar-cadastro" id="fecharForm">×</span>
+        <h2>Adicionar Evento 📅</h2>
+        
+        <form id="formEvento" class="form-evento-estilo">
+            
+            <!-- Linha 1: Título do Evento -->
+            <div class="linha-form">
+                <label class="texto-label">Título do Evento</label>
+                <input type="text" id="titulo" class="campo-texto" placeholder="Ex: Vacina V8" required>
+            </div>
+
+            <!-- Linha 2: Pet e Tipo (lado a lado) -->
+            <div class="linha-form dois-campos">
+                <div class="grupo-campo">
+                    <label class="texto-label">Pet</label>
+                    <select id="petEvento" class="campo-select" required>
+                        <option value="">Selecione o Pet</option>
+                    </select>
+                </div>
+                <div class="grupo-campo">
+                    <label class="texto-label">Tipo</label>
+                    <select id="tipoEvento" class="campo-select" required>
+                        <option value="vacina">💉 Vacina</option>
+                        <option value="consulta">🩺 Consulta</option>
+                        <option value="banho">🛁 Banho e Tosa</option>
+                        <option value="outro">📌 Outro</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Linha 3: Data e Horário (lado a lado) -->
+            <div class="linha-form dois-campos">
+                <div class="grupo-campo">
+                    <label class="texto-label">Data</label>
+                    <input type="date" id="dataEvento" class="campo-data" required>
+                </div>
+                <div class="grupo-campo">
+                    <label class="texto-label">Horário</label>
+                    <input type="time" id="horaEvento" class="campo-hora" required>
+                </div>
+            </div>
+
+            <!-- Linha 4: Observações -->
+            <div class="linha-form">
+                <label class="texto-label">Observações</label>
+                <textarea id="obsEvento" class="campo-textoarea" placeholder="Detalhes importantes..." rows="4"></textarea>
+            </div>
+            
+            <!-- Botão Salvar -->
+            <button type="submit" class="btn-salvar-evento">Salvar Evento</button>
+
+            <!-- Botão Excluir (só aparece quando edita) -->
+            <button type="button" id="btnExcluirEvento" style="display:none;" class="btn-excluir-evento">🗑️ Excluir Evento</button>
+        </form>
+    </div>
+</div>
+
+<!-- ✅ BARRA DE NAVEGAÇÃO IGUAL A HOME -->
+<nav class="barra-navegacao">
+    <div class="grupo-botoes">
+        <button class="nav-btn" data-link="home.html">
+            <img src="img/icone-home.png" alt="Início">
+        </button>
+        
+        <button class="nav-btn active" data-link="calendario.html">
+            <img src="img/icone-calendario.png" alt="Calendário">
+        </button>
+    </div>
+
+    <button id="btnAdd" class="btn-adicionar-central">+</button>
+
+    <div class="grupo-botoes">
+        <button class="nav-btn" data-link="medicamentos.html">
+            <img src="img/icone-remedio.png" alt="Medicamentos">
+        </button>
+        
+        <button class="nav-btn" data-link="analise.html">
+            <img src="img/icone-analise.png" alt="Análises">
+        </button>
+    </div>
+</nav>
+
+<!-- ✅ SCRIPTS -->
+<script src="zscript-geral.js"></script>
+<script src="calendario-script.js"></script>
+
+</body>
+</html>

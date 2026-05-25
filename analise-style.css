@@ -1,0 +1,9 @@
+.nome {
+    color: #FF0000;
+    font-size: 24px;
+    font-weight: bold;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-shadow: 0 0 10px rgba(177, 0, 243, 0.7);
+}

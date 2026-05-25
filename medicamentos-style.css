@@ -1,0 +1,281 @@
+/* ============================================== */
+/* 💊 ESTILO MEDICAMENTOS - PADRONIZADO */
+/* ============================================== */
+.cabecalho {
+    width: 100%;
+    height: 65px;
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    position: fixed;
+    top:0;
+    left: 0;
+    z-index: 100;
+}
+.container-page {
+    margin-top: 90px;
+    padding-top: 0;
+    margin-bottom: 90px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.lista-container {
+    margin-top: 20px;
+}
+
+.remedio-card {
+    background: rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 18px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 5px solid #ff7eb3;
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+}
+
+.remedio-card.inativo {
+    opacity: 0.6;
+    border-left-color: #6c757d;
+}
+
+.remedio-info h4 {
+    color: #fff;
+    font-size: 18px;
+    margin: 0 0 8px 0;
+}
+
+.remedio-info p {
+    color: rgba(255,255,255,0.7);
+    font-size: 13px;
+    margin: 4px 0;
+}
+
+.remedio-info small {
+    color: rgba(255,255,255,0.5);
+    font-size: 11px;
+}
+
+.remedio-acoes {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.btn-editar, .btn-status {
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    transition: transform 0.2s;
+}
+
+.btn-editar:hover, .btn-status:hover {
+    transform: scale(1.05);
+}
+
+.btn-editar { 
+    background: linear-gradient(135deg, #ff9500, #e68900); 
+}
+
+.btn-status { 
+    background: #6c757d; 
+}
+
+.btn-status.ativo { 
+    background: linear-gradient(135deg, #e25555, #c44545); 
+}
+
+/* ✨ FORMULÁRIO - MESMO PADRÃO DO CALENDÁRIO */
+.form-evento-estilo {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 20px;
+}
+
+.linha-form {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+}
+
+.linha-form.dois-campos {
+    flex-direction: row;
+    gap: 15px;
+    justify-content: space-between;
+}
+
+.grupo-campo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.texto-label {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.campo-texto,
+.campo-select,
+.campo-data,
+.campo-hora,
+.campo-textoarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: #ffffff;
+    font-size: 14px;
+    backdrop-filter: blur(8px);
+    outline: none;
+    transition: border 0.3s;
+}
+
+.campo-texto::placeholder,
+.campo-textoarea::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.campo-texto:focus,
+.campo-select:focus,
+.campo-data:focus,
+.campo-hora:focus,
+.campo-textoarea:focus {
+    border-color: #b868e0;
+}
+
+.campo-textoarea {
+    resize: none;
+}
+
+/* 🟣 BOTÕES */
+.btn-salvar-evento {
+    width: 100%;
+    background: linear-gradient(90deg, #9b59b6, #ff0080);
+    border: none;
+    border-radius: 12px;
+    padding: 14px 0;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
+    margin-top: 10px;
+    transition: transform 0.2s;
+}
+
+.btn-salvar-evento:hover {
+    transform: scale(1.02);
+}
+
+.btn-excluir-evento {
+    width: 100%;
+    background: rgba(220, 53, 69, 0.2);
+    border: 1px solid #dc3545;
+    color: #ff6b6b;
+    border-radius: 12px;
+    padding: 12px 0;
+    font-size: 15px;
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+/* TEXTO VAZIO */
+.texto-vazio {
+    color: #d0c4ff;
+    font-size: 14px;
+    text-align: center;
+    padding: 20px 0;
+}
+.home-card {
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    text-align: center;
+    margin: 0 auto 30px;
+}
+.overlay-cadastro {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+}
+.container-cadastro-pet {
+    background: rgba(20, 15, 40, 0.95);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    color: #fff;
+    position: relative;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding-bottom: 30px;
+}
+.fechar-cadastro {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 25px;
+    cursor: pointer;
+    color: #fff;
+}
+.container-cadastro-pet input,
+.container-cadastro-pet select {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    outline: none;
+}
+.container-cadastro-pet input:focus,
+.container-cadastro-pet select:focus {
+    border-color: #B100F3;
+    box-shadow: 0 0 15px rgba(177, 0, 243, 0.3);
+}
+.btn-salvar {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #B100F3, #ff0080);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    margin-top: 15px;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 0 5px 20px rgba(177, 0, 243, 0.4);
+}
+.btn-salvar:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(177, 0, 243, 0.6);
+}

@@ -1,0 +1,387 @@
+/* ===== CABEÇALHO HOME ===== */
+.cabecalho {
+    width: 100%;
+    height: 65px;
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+.nome-app {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-shadow: 0 0 10px rgba(177, 0, 243, 0.7);
+}
+
+/* ===== CONTEÚDO HOME ===== */
+.container {
+    padding: 90px 15px 100px;
+}
+
+.home-card {
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    text-align: center;
+    margin: 0 auto 30px;
+}
+
+.home-card h1 {
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+.subtitulo { color: rgba(255,255,255,0.7); font-size: 16px; }
+
+/* ===== STATUS BAR ===== */
+.status-bar {
+    width: 100%;
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+
+.status-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0.6;
+    min-width: 65px;
+    transition: all 0.3s ease;
+}
+
+.status-item.active { 
+    opacity: 1;
+    transform: translateY(-5px);
+}
+
+.status-circle {
+    width: 65px;
+    height: 65px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.08);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    transition: all 0.3s ease;
+}
+
+.status-item.active .status-circle {
+    border-color: #B100F3;
+    box-shadow: 0 0 20px rgba(177,0,243,0.5);
+    background: linear-gradient(135deg, rgba(177,0,243,0.2), rgba(255,0,128,0.2));
+}
+
+.status-item p { color: #fff; font-size: 12px; margin-top: 5px; }
+
+/* ===== CARDS DOS PETS ===== */
+.pets-container { 
+    width: 100%;
+    margin-top: 20px;
+}
+
+.pets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px;
+    padding: 5px;
+}
+
+.pet-card {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: relative;
+}
+
+/* Borda luminosa no hover */
+.pet-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(177, 0, 243, 0), rgba(177, 0, 243, 0.7));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.pet-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        0 15px 35px rgba(177, 0, 243, 0.15),
+        0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.pet-card:hover::before {
+    opacity: 1;
+}
+
+.pet-imagem { 
+    width: 100%; 
+    height: 130px; 
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.pet-card:hover .pet-imagem {
+    transform: scale(1.05);
+}
+
+.pet-info { 
+    padding: 15px;
+}
+
+.pet-nome { 
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    letter-spacing: 0.3px;
+}
+
+.pet-detalhes {
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+/* ===== CADASTRO PET ===== */
+.overlay-cadastro {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+}
+.container-cadastro-pet {
+    background: rgba(20, 15, 40, 0.95);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    color: #fff;
+    position: relative;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding-bottom: 30px;
+}
+.fechar-cadastro {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 25px;
+    cursor: pointer;
+    color: #fff;
+}
+
+/* ✅ INPUTS E LABEL - REGRAS CORRIGIDAS E UNIFICADAS */
+.input-group{
+    position: relative;
+    margin-bottom: 8px;
+}
+
+label{
+    color: #7F03FF;
+    padding: 0 5px;
+    position: absolute;
+    transform: translateY(-50%); /* ✅ Erro de espaço corrigido */
+    top: 50%; /* ✅ Posição inicial no meio */
+    left: 1em;
+    pointer-events: none;
+    transition: 0.5s;
+    background: rgba(20, 15, 40, 0.95); /* ✅ Cor igual ao fundo do modal */
+}
+
+input{
+    color: #FFFFFF;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: transparent;
+    border-radius: 12px;
+    width: 300px;
+    height: 60px;
+    padding: 0 1rem;
+    outline: none;
+    margin-top: 7px;
+}
+
+/* ✅ ANIMAÇÃO DA LABEL - CORRIGIDO PARA FUNCIONAR NA LISTA TAMBÉM */
+input:focus ~ label,
+input:valid ~ label,
+.botao-lista.aberto ~ label { /* ✅ Agora detecta quando a lista está aberta */
+    color:#C6B1FF;
+    top: 0; /* ✅ Sobe para cima */
+    font-size: 0.7rem;
+    text-shadow: 0 0 5px #A301E0BA, 0 0 10px #A301E0BA, 0 0 20px #A301E0BA;
+}
+
+.container-cadastro-pet input:focus {
+    border-color: #B100F3;
+    box-shadow: 0 0 15px rgba(177, 0, 243, 0.3);
+}
+
+/* ===== ESTILO DA LISTA SUSPENSA - SEU SITE ===== */
+.lista-suspensa-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+}
+
+.botao-lista {
+    width: 100%;
+    height: 60px;
+    background: transparent;
+    color: #FFFFFF;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 0 1rem;
+    margin-top: 7px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+    font-size: 16px;
+}
+
+.botao-lista.aberto,
+.botao-lista:focus {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom: none;
+    border-color: #9d4edd;
+    background: rgba(157, 78, 221, 0.05);
+    color: #b888e6;
+}
+
+.botao-lista i {
+    color: #9d4edd;
+    transition: transform 0.3s;
+}
+.botao-lista.aberto i {
+    transform: rotate(180deg);
+}
+
+/* 🟣 LISTA DE OPÇÕES - FUNDO ROXO, GRUDADA E PEQUENA */
+.lista-opcoes-personalizada {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #2a1b47;
+    border: 1px solid #9d4edd;
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+    max-height: 160px;
+    overflow-y: auto;
+    display: none;
+    z-index: 999;
+    margin: 0;
+    padding: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* 🟡 ITENS DA LISTA COM BOLINHA AZUL */
+.opcao-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    color: #FFFFFF;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    cursor: pointer;
+    transition: background 0.2s ease;
+    font-size: 18px;
+}
+
+.opcao-item:last-child {
+    border-bottom: none;
+}
+
+.opcao-item:hover {
+    background: rgba(157, 78, 221, 0.2);
+}
+
+/* Estilo da bolinha */
+.radio-btn {
+    width: 22px;
+    height: 22px;
+    border: 2px solid #999;
+    border-radius: 50%;
+    position: relative;
+    flex-shrink: 0;
+    transition: all 0.2s;
+}
+
+.opcao-item.selecionado .radio-btn {
+    border-color: #3b82f6;
+}
+.opcao-item.selecionado .radio-btn::after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: #3b82f6;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* ✅ BOTÃO SALVAR */
+.btn-salvar {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #B100F3, #ff0080);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    margin-top: 15px;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 0 5px 20px rgba(177, 0, 243, 0.4);
+}
+.btn-salvar:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(177, 0, 243, 0.6);
+}

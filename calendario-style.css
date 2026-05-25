@@ -1,0 +1,699 @@
+.cabecalho {
+    width: 100%;
+    height: 65px;
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+.nome-app {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-shadow: 0 0 10px rgba(177, 0, 243, 0.7);
+}
+.container-page {
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 90px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.controles-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.btn-hoje {
+    margin-top: 67px;
+    background: linear-gradient(135deg, #9b59b6, #8e44ad);
+    color: white;
+    border: none;
+    padding: 7px 14px;
+    border-radius: 18px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 3px 12px rgba(155, 89, 182, 0.3);
+}
+.filtros {
+    margin-top: 6px;
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+.filtro-btn {
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: rgba(255,255,255,0.8);
+    padding: 5px 9px;
+    border-radius: 14px;
+    font-size: 10px;
+    cursor: pointer;
+}
+.filtro-btn.ativo {
+    background: #9b59b6;
+    color: white;
+    font-weight: bold;
+}
+
+/* CALENDÁRIO */
+.calendario-samsung {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 12px;
+    margin-bottom: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.cabecalho-calendario {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.cabecalho-calendario button {
+    background: rgba(255,255,255,0.05);
+    border: none;
+    color: #e0c3fc;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cabecalho-calendario h3 {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+}
+.dias-semana {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 3px;
+    margin-bottom: 4px;
+}
+.dias-semana span {
+    color: #b4a7ff;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.grade-dias {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 3px;
+}
+.dia-calendario {
+    cursor: pointer;
+    position: relative;
+    min-height: 54px;
+    height: 54px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.05);
+    overflow: hidden;
+}
+.numero-dia {
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: right;
+    position: absolute;
+    top: 3px;
+    right: 5px;
+    z-index: 10;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+}
+.dia-calendario.hoje {
+    border: 2px solid #9b59b6 !important;
+}
+.dia-calendario.hoje .numero-dia {
+    background: #9b59b6;
+    color: white;
+    width: 23px;
+    height: 23px;
+    line-height: 23px;
+    border-radius: 50%;
+}
+
+.evento-no-dia {
+    position: absolute;
+    inset: 0;
+    background: none;
+    border: none;
+}
+.evento-conteudo {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.foto-pet-evento {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.nome-evento {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 8px;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 0 3px rgba(0,0,0,0.9);
+    text-align: center;
+    width: 90%;
+}
+.tipo-evento {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    border-radius: 3px;
+    padding: 1px;
+}
+
+/* LISTA DE EVENTOS */
+.lista-itens {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.item-lista {
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+    padding: 10px 12px;
+    border-left: 3px solid #9b59b6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.item-lista.concluido {
+    opacity: 0.5;
+    border-left-color: #888;
+}
+.info-item h4 {
+    color: #fff;
+    font-size: 14px;
+    margin: 0 0 2px 0;
+}
+.info-item p {
+    color: rgba(255,255,255,0.6);
+    font-size: 11px;
+    margin: 0;
+}
+.acoes-item {
+    display: flex;
+    gap: 6px;
+}
+.btn-check {
+    background: #34c759;
+    border: none;
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    font-size: 14px;
+    cursor: pointer;
+}
+.btn-edit {
+    background: #ff9500;
+    border: none;
+    color: white;
+    width: 28px;
+    height: 28px; 
+    border-radius: 50%;
+    font-size: 12px;
+    cursor: pointer;
+}
+.overlay-cadastro {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+}
+.container-cadastro-pet {
+    background: rgba(20, 15, 40, 0.95);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    color: #fff;
+    position: relative;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding-bottom: 30px;
+}
+.fechar-cadastro {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 25px;
+    cursor: pointer;
+    color: #fff;
+}
+.container-cadastro-pet input,
+.container-cadastro-pet select {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    outline: none;
+}
+.container-cadastro-pet input:focus,
+.container-cadastro-pet select:focus {
+    border-color: #B100F3;
+    box-shadow: 0 0 15px rgba(177, 0, 243, 0.3);
+}
+.btn-salvar {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #B100F3, #ff0080);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    margin-top: 15px;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 0 5px 20px rgba(177, 0, 243, 0.4);
+}
+.btn-salvar:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(177, 0, 243, 0.6);
+}
+/* ============================================== */
+/* ✨ FORMULÁRIO - LAYOUT IGUAL A IMAGEM */
+/* ============================================== */
+
+.form-evento-estilo {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 20px;
+}
+
+.linha-form {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+}
+
+.linha-form.dois-campos {
+    flex-direction: row;
+    gap: 15px;
+    justify-content: space-between;
+}
+
+.grupo-campo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.texto-label {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.campo-texto,
+.campo-select,
+.campo-data,
+.campo-hora,
+.campo-textoarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: #ffffff;
+    font-size: 14px;
+    backdrop-filter: blur(8px);
+    outline: none;
+    transition: border 0.3s;
+}
+
+.campo-texto::placeholder,
+.campo-textoarea::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.campo-texto:focus,
+.campo-select:focus,
+.campo-data:focus,
+.campo-hora:focus,
+.campo-textoarea:focus {
+    border-color: #b868e0;
+}
+
+.campo-textoarea {
+    resize: none;
+}
+
+/* 🟣 BOTÃO SALVAR COM GRADIENTE ROXO → ROSA */
+.btn-salvar-evento {
+    width: 100%;
+    background: linear-gradient(90deg, #9b59b6, #ff0080);
+    border: none;
+    border-radius: 12px;
+    padding: 14px 0;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
+    margin-top: 10px;
+    transition: transform 0.2s;
+}
+
+.btn-salvar-evento:hover {
+    transform: scale(1.02);
+}
+
+.btn-excluir-evento {
+    width: 100%;
+    background: rgba(220, 53, 69, 0.2);
+    border: 1px solid #dc3545;
+    color: #ff6b6b;
+    border-radius: 12px;
+    padding: 12px 0;
+    font-size: 15px;
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+/* 📦 AJUSTE DO TAMANHO DA JANELA (para ficar do tamanho certo) */
+.container-cadastro-pet {
+    width: 90% !important;
+    max-width: 380px !important;
+    padding: 25px !important;
+    border-radius: 20px !important;
+    background: rgba(20, 15, 40, 0.9) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+}
+
+/* ============================================== */
+/* 🐶 CONTAINER TEMPO + MARCAÇÃO NO CALENDÁRIO */
+/* ============================================== */
+
+.container-tempo-pet {
+    padding: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.tempo-card {
+    background: rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 20px;
+    border-left: 5px solid #B100F3;
+    backdrop-filter: blur(8px);
+    position: relative;
+}
+
+.titulo-tempo {
+    color: #fff;
+    font-size: 18px;
+    margin: 0 0 15px 0;
+    text-align: center;
+}
+
+.dados-tempo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#textoDataChegada {
+    color: rgba(255,255,255,0.7);
+    font-size: 14px;
+    margin: 0 0 10px 0;
+}
+
+#dataChegadaValor {
+    color: #fff;
+    font-weight: 
+    font-weight: 600;
+}
+
+.dias-contador {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 8px;
+}
+
+#quantidadeDias {
+    font-size: 42px;
+    font-weight: bold;
+    color: #ff7eb3;
+    line-height: 1;
+}
+
+#textoDias {
+    color: #fff;
+    font-size: 15px;
+}
+
+.aviso-marcacao {
+    color: rgba(255,255,255,0.6);
+    font-size: 11px;
+}
+
+.acoes-tempo {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.btn-tempo {
+    flex: 1;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 0;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s;
+    color: #fff;
+}
+
+.btn-tempo:hover {
+    transform: scale(1.03);
+}
+
+.btn-editar-tempo {
+    background: linear-gradient(135deg, #9b59b6, #B100F3);
+}
+
+.btn-excluir-tempo {
+    background: rgba(220, 53, 69, 0.8);
+}
+
+/* 📅 MARCAÇÃO ESPECIAL NO CALENDÁRIO */
+.dia-calendario.chegada {
+    background: linear-gradient(135deg, #ff7eb3, #ff4d94) !important;
+    color: #fff !important;
+    font-weight: bold;
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 0 10px rgba(255, 126, 179, 0.5);
+}
+
+.dia-calendario.chegada::after {
+    content: "🐾";
+    position: absolute;
+    bottom: 2px;
+    right: 3px;
+    font-size: 10px;
+    opacity: 0.9;
+    text-shadow: none;
+}
+/* ============================================== */
+/* 🃏 CARTÃO INDIVIDUAL POR PET */
+/* ============================================== */
+#listaCartoesTempo {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin: 20px 0;
+}
+
+.container-tempo-pet {
+    perspective: 1000px;
+}
+
+.cartao-tempo {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+    cursor: pointer;
+}
+
+.cartao-tempo.virado {
+    transform: rotateY(180deg);
+}
+
+.frente-cartao, .verso-cartao {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 16px;
+    padding: 20px;
+    box-sizing: border-box;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* ✅ FRENTE */
+.frente-cartao {
+    background: rgba(255,255,255,0.08);
+    border-left: 5px solid #B100F3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.frente-cartao .titulo {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.frente-cartao .nome-pet {
+    font-size: 16px;
+    color: #b4a7ff;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.frente-cartao .data {
+    font-size: 15px;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 12px;
+}
+
+.frente-cartao .numero-dias {
+    font-size: 48px;
+    font-weight: bold;
+    color: #ff4d94; /* Rosa igual na imagem */
+    line-height: 1;
+}
+
+.frente-cartao .texto-dias {
+    font-size: 14px;
+    color: rgba(255,255,255,0.8);
+    margin-top: 5px;
+}
+
+/* 🔄 VERSO */
+.verso-cartao {
+    background: rgba(20, 15, 40, 0.9);
+    border: 1px solid rgba(177, 0, 243, 0.3);
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.verso-cartao .aviso {
+    color: rgba(255,255,255,0.6);
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.verso-cartao .botoes {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+}
+
+.btn-tempo {
+    flex: 1;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 0;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s;
+    color: #fff;
+}
+
+.btn-tempo:hover {
+    transform: scale(1.03);
+}
+
+.btn-editar-tempo {
+    background: linear-gradient(135deg, #9b59b6, #B100F3);
+}
+
+.btn-excluir-tempo {
+    background: rgba(220, 53, 69, 0.8);
+}
+
+/* Marcação no calendário por pet */
+.dia-calendario.chegada-pet {
+    background: linear-gradient(135deg, #ff7eb3, #ff4d94) !important;
+    color: #fff !important;
+    font-weight: bold;
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 0 10px rgba(255, 126, 179, 0.5);
+}
+
+.dia-calendario.chegada-pet::after {
+    content: "🐾";
+    position: absolute;
+    bottom: 2px;
+    right: 3px;
+    font-size: 10px;
+}

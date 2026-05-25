@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil</title>
+    <link rel="stylesheet" href="zstyle.css">
+     <!-- ✅ ESTILO PRÓPRIO DA PÁGINA -->
+    <link rel="stylesheet" href="meu-perfil-style.css">
+    
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="zfirebase-config.js"></script>
+</head>
+<body>
+
+    <!-- ✅ FUNDO AURORA COM O PADRÃO DE PATAS -->
+    <div class="bg">
+        <img src="https://img.magnific.com/vetores-gratis/fundo-de-impressoes-de-patas-desenhadas-a-mao_23-2151123098.jpg?semt=ais_hybrid&w=740&q=80" alt="Padrão de patas">
+    </div>
+
+    <!-- ✅ CABEÇALHO PADRONIZADO -->
+    <header class="cabecalho-perfil">
+        <button class="btn-voltar" id="btnVoltar" aria-label="Voltar">←</button>
+        <h1 class="nome-app">Meu Perfil</h1>
+        <button class="btn-editar" id="btnEditar" aria-label="Editar perfil">✏️</button>
+    </header>
+
+    <!-- ✅ CONTEÚDO PRINCIPAL -->
+    <main class="conteudo-perfil">
+
+        <!-- FOTO E NOME DO USUÁRIO -->
+        <div class="foto-perfil-usuario">
+            <img id="fotoUsuario" src="https://via.placeholder.com/120/9b59b6/ffffff?text=👤" alt="Foto do perfil">
+        </div>
+
+        <h2 id="nomeUsuario">Carregando...</h2>
+        <p id="emailUsuario" class="email-usuario">carregando@email.com</p>
+
+        <!-- ✅ SEÇÃO: DADOS PESSOAIS -->
+        <div class="secao">
+            <div class="secao-titulo">
+                <span>👤</span>
+                <h2>Dados Pessoais</h2>
+            </div>
+            
+            <div class="info-linha">
+                <strong>Nome Completo:</strong>
+                <span id="nomeCompletoUsuario">--</span>
+            </div>
+            <div class="info-linha">
+                <strong>Telefone:</strong>
+                <span id="telefoneUsuario">--</span>
+            </div>
+            <div class="info-linha">
+                <strong>Data de Nascimento:</strong>
+                <span id="nascimentoUsuario">--</span>
+            </div>
+            <div class="info-linha">
+                <strong>Cidade / UF:</strong>
+                <span id="cidadeUsuario">--</span>
+            </div>
+        </div>
+
+        <!-- ✅ SEÇÃO: SEGURANÇA E OPÇÕES -->
+        <div class="secao">
+            <div class="secao-titulo">
+                <span>🔒</span>
+                <h2>Segurança e Conta</h2>
+            </div>
+            
+            <button class="btn-opcao" id="btnTrocarSenha">🔑 Trocar Senha</button>
+            <button class="btn-opcao btn-sair" id="btnSairConta">🚪 Sair da Conta</button>
+        </div>
+
+    </main>
+
+    <!-- ✅ O MODAL DE EDIÇÃO É GERADO AUTOMATICAMENTO PELO JAVASCRIPT -->
+
+    <!-- Script da página -->
+    <script src="meu-perfil-script.js"></script>
+</body>
+</html>

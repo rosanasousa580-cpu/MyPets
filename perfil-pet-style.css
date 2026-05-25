@@ -1,0 +1,492 @@
+/* ==========================================
+   PERFIL PET - ESTILO COMPLETO
+========================================== */
+
+/* ===== RESET E GERAL ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    min-height: 100vh;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+.bg {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    opacity: 0.35;
+}
+
+.bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ✅ AURORA DE FUNDO QUE MUDA DE COR CONFORME GÊNERO */
+.fundo-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    transition: all 0.6s ease;
+    pointer-events: none;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* ===== CABEÇALHO ===== */
+.cabecalho-perfil {
+    width: 100%;
+    height: 65px;
+    background: rgba(15, 10, 30, 0.85);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+}
+
+.cabecalho-perfil.visivel {
+    transform: translateY(0);
+}
+
+.btn-voltar, .btn-editar {
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* ==========================================
+   REGRAS DE COR DINÂMICA
+   ========================================== */
+
+/* --- MASCULINO → AZUL 🟦 --- */
+.perfil-card.masculino {
+    --cor-principal: #3b82f6;
+    --cor-clara: #dbeafe;
+    --cor-suave: rgba(59, 130, 246, 0.15);
+    --cor-borda: rgba(59, 130, 246, 0.3);
+}
+.masculino .fundo-overlay {
+    background: radial-gradient(circle at top center, rgba(59, 130, 246, 0.4), rgba(29, 78, 216, 0.15), transparent 70%);
+}
+.masculino .btn-voltar:hover, 
+.masculino .btn-editar:hover,
+.masculino .btn-adicionar:hover {
+    background: var(--cor-suave);
+    border-color: var(--cor-principal);
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.3);
+    color: var(--cor-principal);
+}
+.masculino .item-dado {
+    border-color: var(--cor-borda);
+    background: var(--cor-suave);
+}
+.masculino .valor-dado {
+    color: var(--cor-clara);
+}
+.masculino .secao-titulo {
+    color: var(--cor-principal);
+}
+.masculino .capa-pet img {
+    border-color: var(--cor-principal);
+    box-shadow: 0 0 25px var(--cor-suave);
+}
+.masculino .btn-opcao:hover {
+    background: var(--cor-suave);
+    border-color: var(--cor-principal);
+}
+
+/* --- FEMININO → ROSA 🩷 --- */
+.perfil-card.feminino {
+    --cor-principal: #ec4899;
+    --cor-clara: #fce7f3;
+    --cor-suave: rgba(236, 72, 153, 0.15);
+    --cor-borda: rgba(236, 72, 153, 0.3);
+}
+.feminino .fundo-overlay {
+    background: radial-gradient(circle at top center, rgba(236, 72, 153, 0.4), rgba(219, 39, 119, 0.15), transparent 70%);
+}
+.feminino .btn-voltar:hover, 
+.feminino .btn-editar:hover,
+.feminino .btn-adicionar:hover {
+    background: var(--cor-suave);
+    border-color: var(--cor-principal);
+    box-shadow: 0 0 12px rgba(236, 72, 153, 0.3);
+    color: var(--cor-principal);
+}
+.feminino .item-dado {
+    border-color: var(--cor-borda);
+    background: var(--cor-suave);
+}
+.feminino .valor-dado {
+    color: var(--cor-clara);
+}
+.feminino .secao-titulo {
+    color: var(--cor-principal);
+}
+.feminino .capa-pet img {
+    border-color: var(--cor-principal);
+    box-shadow: 0 0 25px var(--cor-suave);
+}
+.feminino .btn-opcao:hover {
+    background: var(--cor-suave);
+    border-color: var(--cor-principal);
+}
+
+/* ==========================================
+   ESTRUTURA PRINCIPAL
+   ========================================== */
+.perfil-card {
+    max-width: 500px;
+    margin: 0 auto;
+    min-height: 100vh;
+}
+
+.conteudo-perfil {
+    padding: 15px 30px;
+    color: #fff;
+    padding-top: 20px;
+}
+/* FOTO DE PERFIL */
+.capa-pet {
+    width: 70%;       /* A div vai ocupar 70% da largura da tela */
+    aspect-ratio: 1/1; /* 🟩 Essa linha GARANTE que vai ser QUADRADA sempre */
+    margin: 80px auto 10px; /* Centraliza e dá espaço do topo */
+}
+
+.fotopet {
+    width: 100%;      /* Agora a imagem ocupa TODO o tamanho da div (que já é 70% e quadrada) */
+    height: 100%;     /* Força altura igual à largura */
+    border-radius: 30px; /* Bordas arredondadas como você quer */
+    object-fit: cover; /* Imagem não distorce, encaixa certinho */
+    border: 3px solid;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.info-principal {
+    text-align: center;
+    margin: 20px 0;
+}
+.info-principal h1 {
+    font-size: 2rem;
+    margin-bottom: 5px;
+    color: var(--cor-principal, #fff);
+}
+.info-principal p {
+    color: rgba(255,255,255,0.7);
+    line-height: 1.5;
+}
+
+/* ✅ CARDS DE DADOS: OS 3 LADO A LADO */
+.lista-dados {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 12px;
+    width: 100%;
+    margin: 25px 0;
+}
+
+/* ✅ FORMATO: VALOR GRANDE EM CIMA / TEXTO PEQUENO EMBAIXO */
+.item-dado {
+    flex: 1;
+    min-height: 90px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.item-dado:hover {
+    transform: translateY(-3px);
+}
+
+.valor-dado {
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+}
+
+.label-dado {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    opacity: 0.9;
+    color: rgba(255,255,255,0.7);
+}
+
+/* SEÇÕES */
+.secao {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(4px);
+}
+.secao-titulo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+.btn-adicionar {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    border: none;
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+.texto-secao {
+    color: rgba(255,255,255,0.8);
+    line-height: 1.6;
+}
+
+/* ITENS DE LISTA (VACINAS E LEMBRETES) */
+.item-lista {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+.info-item h4 {
+    color: #fff;
+    margin-bottom: 3px;
+}
+.info-item p {
+    color: rgba(255,255,255,0.6);
+    font-size: 12px;
+}
+.tag {
+    font-size: 18px;
+}
+
+/* BOTÕES DENTRO DAS SEÇÕES */
+.btn-opcao {
+    width: 100%;
+    padding: 15px;
+    margin: 8px 0;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 16px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.texto-vazio {
+    text-align: center;
+    color: #aaa;
+    margin-top: 20px;
+    font-style: italic;
+}
+
+/* 📌 ANIMAÇÃO CARTA IDADE */
+.carta-idade {
+    position: relative;
+    height: 35px;
+    cursor: pointer;
+    perspective: 1000px;
+    margin: 0 auto;
+    max-width: 120px;
+}
+.carta-idade div {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backface-visibility: hidden;
+    transition: transform 0.6s ease;
+    position: absolute;
+    top:0;
+    left:0;
+}
+.frente {
+    background: var(--cor-suave);
+    color: var(--cor-principal);
+    font-weight: bold;
+}
+.tras {
+    background: rgba(255, 149, 0, 0.15);
+    color: #ff9500;
+    transform: rotateY(180deg);
+    font-size: 11px;
+}
+.carta-idade.virada .frente { transform: rotateY(180deg); }
+.carta-idade.virada .tras { transform: rotateY(360deg); }
+
+/* MODAL DE EDIÇÃO */
+.overlay-cadastro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.85);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+}
+.container-cadastro-pet {
+    background: #1e1e2f;
+    padding: 30px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid var(--cor-borda, rgba(255,255,255,0.1));
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    position: relative;
+}
+.fechar-cadastro {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.fechar-cadastro:hover {
+    color: #fff;
+}
+.container-cadastro-pet h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--cor-principal, #fff);
+}
+.container-cadastro-pet input,
+.container-cadastro-pet textarea {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 12px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 14px;
+}
+.container-cadastro-pet input:focus,
+.container-cadastro-pet textarea:focus {
+    outline: none;
+    border-color: var(--cor-principal, #B100F3);
+    box-shadow: 0 0 0 2px var(--cor-suave, rgba(177, 0, 243, 0.1));
+}
+.btn-salvar {
+    width: 100%;
+    padding: 14px;
+    background: var(--cor-principal, #B100F3);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+.btn-salvar:hover {
+    opacity: 0.9;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.05);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--cor-principal, #B100F3);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #ff0080;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 480px) {
+    .conteudo-perfil {
+        padding: 15px 20px;
+    }
+    .info-principal h1 {
+        font-size: 1.6rem;
+    }
+
+    .lista-dados {
+        gap: 8px;
+    }
+
+    .item-dado {
+        min-height: 80px;
+        padding: 10px 5px;
+    }
+
+    .valor-dado {
+        font-size: 15px;
+    }
+
+    .label-dado {
+        font-size: 10px;
+    }
+
+    .secao {
+        padding: 15px;
+    }
+
+    .container-cadastro-pet {
+        padding: 20px;
+    }
+}
+

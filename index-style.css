@@ -1,0 +1,129 @@
+/* ===== ESTILOS EXCLUSIVOS DA TELA LOGIN ===== */
+
+body.tela-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.login-card {
+    width: 90%;
+    max-width: 420px;
+    padding: 2.5rem 2rem;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+h1.titulo-login {
+    text-align: center;
+    background: linear-gradient(135deg, #ffffff, #e2c9ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(176,136,249,0.4);
+    margin-bottom: 2.5rem;
+    font-weight: 600;
+    font-size: 3rem;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 16px 22px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 70px;
+    font-size: 1.1rem;
+    color: #fff;
+    outline: none;
+}
+
+input::placeholder { 
+    color: rgba(255, 255, 255, 0.6); 
+}
+
+input:focus { 
+    border-color: #B100F3; 
+    box-shadow: 0 0 15px rgba(177,0,243,0.3); 
+}
+
+/* ✅ ÍCONE DO OLHO TAMANHO CERTO */
+.icone-senha {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    height: auto;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: 0.3s;
+}
+.icone-senha:hover { opacity: 1; }
+
+.btn-entrar {
+    width: 100%;
+    padding: 18px;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #B100F3, #ff0080);
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1rem;
+    box-shadow: 0 8px 25px rgba(177, 0, 243, 0.3);
+    transition: 0.3s ease;
+}
+.btn-entrar:hover { 
+    transform: translateY(-3px); 
+    box-shadow: 0 12px 35px rgba(177, 0, 243, 0.5); 
+}
+
+.btn-google {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 50px;
+    background: #ffffff;
+    color: #333;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+.btn-google:hover {
+    background: #f1f1f1;
+    transform: translateY(-2px);
+}
+
+.links-form {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+.links-form a {
+    color: #e2c9ff;
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+.links-form a:hover {
+    text-decoration: underline;
+}

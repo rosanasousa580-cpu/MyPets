@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicamentos - My Pets</title>
+    
+    <!-- ✅ ARQUIVOS GERAIS (caminho correto) -->
+    <link rel="stylesheet" href="zstyle.css">
+    <!-- ✅ ESTILO PRÓPRIO DA PÁGINA -->
+    <link rel="stylesheet" href="medicamentos-style.css">
+
+</head>
+<body>
+
+<div class="bg">
+  <img src="https://img.magnific.com/vetores-gratis/fundo-de-impressoes-de-patas-desenhadas-a-mao_23-2151123098.jpg?semt=ais_hybrid&w=740&q=80" alt="">
+</div>
+
+<!-- CABEÇALHO -->
+<header class="cabecalho">
+    <button class="btn-menu" id="btnMenu">☰</button>
+    <h1 class="nome-app">Medicamentos</h1>
+    <button class="btn-notif" id="btnNotif">🔔</button>
+</header>
+
+<!-- MENU LATERAL -->
+<div class="menu-lateral" id="menuLateral">
+    <div class="menu-conteudo">
+        <div class="menu-perfil">
+            <img src="https://via.placeholder.com/80" alt="Foto perfil" class="foto-perfil">
+            <p id="nomePerfilMenu">Usuário</p>
+        </div>
+
+        <div class="item-menu" id="linkMeuPerfil">
+            <p>👤 Meu Perfil</p>
+        </div>
+        <div class="item-menu" id="linkHome">
+            <p>🐶 Meus Pets</p>
+        </div>
+        <div class="item-menu">
+            <p>➕ Adicionar Pet</p>
+        </div>
+        <div class="item-menu">
+            <p>⚙️ Configurações</p>
+        </div>
+        <div class="item-menu">
+            <p>ℹ️ Sobre</p>
+        </div>
+        
+        <div class="divisor"></div>
+        
+        <div class="item-menu sair" id="btnSairMenu">
+            <p>🚪 Sair</p>
+        </div>
+    </div>
+</div>
+
+<div class="fundo-overlay" id="fundoOverlay"></div>
+
+<!-- CONTEÚDO PRINCIPAL -->
+<div class="container-page">
+
+    <div class="home-card">
+        <h2>Controle de Medicamentos</h2>
+        <p class="subtitulo">Dosagens, horários e tratamentos</p>
+    </div>
+
+    <!-- LISTA DE MEDICAMENTOS -->
+    <div class="lista-container" id="listaRemedios">
+        <p class="texto-vazio">Nenhum medicamento cadastrado ainda 💊</p>
+    </div>
+
+</div>
+
+<!-- CAIXA DE NOTIFICAÇÃO -->
+<div id="caixaNotificacao" class="caixa-notificacao">
+    <div class="conteudo-notificacao">
+        <p id="textoNotificacao">Você não tem novas notificações 🔔</p>
+        <button class="btn-ok">OK</button>
+    </div>
+</div>
+
+<!-- FORMULÁRIO ADICIONAR/EDITAR MEDICAMENTO -->
+<div class="overlay-cadastro" id="overlayForm">
+    <div class="container-cadastro-pet">
+        <span class="fechar-cadastro" id="fecharForm">×</span>
+        <h2 id="formTitulo">Novo Medicamento 💊</h2>
+        
+        <form id="formRemedio" class="form-evento-estilo">
+            <div class="linha-form">
+                <label class="texto-label">Nome do Medicamento</label>
+                <input type="text" id="nome" class="campo-texto" required>
+            </div>
+
+            <div class="linha-form dois-campos">
+                <div class="grupo-campo">
+                    <label class="texto-label">Pet</label>
+                    <select id="petId" class="campo-select" required>
+                        <option value="">Selecione o Pet</option>
+                    </select>
+                </div>
+                <div class="grupo-campo">
+                    <label class="texto-label">Tipo</label>
+                    <select id="tipo" class="campo-select" required>
+                        <option value="remedio">Remédio</option>
+                        <option value="vermifugo">Vermífugo</option>
+                        <option value="suplemento">Suplemento</option>
+                        <option value="antiinflamatorio">Anti-inflamatório</option>
+                        <option value="outro">Outro</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="linha-form dois-campos">
+                <div class="grupo-campo">
+                    <label class="texto-label">Dosagem / Quantidade</label>
+                    <input type="text" id="dosagem" class="campo-texto" placeholder="Ex: 1 comprimido, 5ml..." required>
+                </div>
+                <div class="grupo-campo">
+                    <label class="texto-label">Frequência / Horário</label>
+                    <input type="text" id="frequencia" class="campo-texto" placeholder="Ex: 8 em 8 horas, 1x ao dia..." required>
+                </div>
+            </div>
+
+            <div class="linha-form dois-campos">
+                <div class="grupo-campo">
+                    <label class="texto-label">Data de Início</label>
+                    <input type="date" id="dataInicio" class="campo-data" required>
+                </div>
+                <div class="grupo-campo">
+                    <label class="texto-label">Data de Término (opcional)</label>
+                    <input type="date" id="dataFim" class="campo-data">
+                </div>
+            </div>
+
+            <div class="linha-form">
+                <label class="texto-label">Observações</label>
+                <textarea id="observacao" class="campo-textoarea" rows="3"></textarea>
+            </div>
+            
+            <button type="submit" class="btn-salvar-evento">Salvar Medicamento</button>
+            <button type="button" id="btnExcluir" class="btn-excluir-evento" style="display:none;">🗑️ Excluir Medicamento</button>
+
+        </form>
+    </div>
+</div>
+
+<!-- BARRA DE NAVEGAÇÃO INFERIOR -->
+<nav class="barra-navegacao">
+    <div class="grupo-botoes">
+        <button class="nav-btn" data-link="home.html">
+            <img src="img/icone-home.png" alt="Início">
+        </button>
+        
+        <button class="nav-btn" data-link="calendario.html">
+            <img src="img/icone-calendario.png" alt="Calendário">
+        </button>
+    </div>
+
+    <!-- ✅ BOTÃO + CENTRAL -->
+    <button id="btnAdd" class="btn-adicionar-central">+</button>
+
+    <div class="grupo-botoes">
+        <button class="nav-btn active" data-link="medicamentos.html">
+            <img src="img/icone-remedio.png" alt="Medicamentos">
+        </button>
+        
+        <button class="nav-btn" data-link="analise.html">
+            <img src="img/icone-analise.png" alt="Análise">
+        </button>
+    </div>
+</nav>
+
+<!-- ✅ FIREBASE E SCRIPTS (caminho correto) -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+<script src="zfirebase-config.js"></script>
+<script src="zscript-geral.js"></script>
+<script src="medicamentos-script.js"></script>
+
+</body>
+</html>

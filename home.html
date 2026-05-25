@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Pets - Home</title>
+    
+    <!-- ✅ FIREBASE PRIMEIRO SEMPRE -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+    <!-- ✅ BIBLIOTECA DOS ÍCONES (Para aparecer a seta) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- ✅ DEPOIS SUAS CONFIGURAÇÕES -->
+    <script src="zfirebase-config.js"></script>
+    <link rel="stylesheet" href="zstyle.css">
+    <link rel="stylesheet" href="home-style.css">
+
+</head>
+<body>
+
+<div class="bg">
+  <img src="https://img.magnific.com/vetores-gratis/fundo-de-impressoes-de-patas-desenhadas-a-mao_23-2151123098.jpg?semt=ais_hybrid&w=740&q=80" alt="">
+</div>
+
+<!-- CABEÇALHO -->
+<header class="cabecalho">
+    <button class="btn-menu" id="btnMenu">☰</button>
+    <h1 class="nome-app">My Pets</h1>
+    <button class="btn-notif" id="btnNotif">🔔</button>
+</header>
+
+<!-- MENU LATERAL -->
+<div class="menu-lateral" id="menuLateral">
+    <div class="menu-conteudo">
+        <div class="menu-perfil">
+            <img src="https://via.placeholder.com/80" alt="Foto perfil" class="foto-perfil">
+            <p id="nomePerfilMenu">Usuário</p>
+        </div>
+
+        <div class="item-menu" id="linkMeuPerfil">
+            <p>👤 Meu Perfil</p>
+        </div>
+        <div class="item-menu">
+            <p>🐶 Meus Pets</p>
+        </div>
+        <div class="item-menu">
+            <p>➕ Adicionar Pet</p>
+        </div>
+        <div class="item-menu">
+            <p>⚙️ Configurações</p>
+        </div>
+        <div class="item-menu">
+            <p>ℹ️ Sobre</p>
+        </div>
+        
+        <div class="divisor"></div>
+        
+        <div class="item-menu sair" id="btnSairMenu">
+            <p>🚪 Sair</p>
+        </div>
+    </div>
+</div>
+
+<div class="fundo-overlay" id="fundoOverlay"></div>
+
+<!-- CONTEÚDO PRINCIPAL -->
+<div class="container">
+
+    <div class="status-bar">
+        <div class="status-item active" data-categoria="todos">
+            <div class="status-circle"><span>📋</span></div>
+            <p>Todos</p>
+        </div>
+        <div class="status-item" data-categoria="cachorro">
+            <div class="status-circle"><span>🐶</span></div>
+            <p>Cães</p>
+        </div>
+        <div class="status-item" data-categoria="gato">
+            <div class="status-circle"><span>🐱</span></div>
+            <p>Gatos</p>
+        </div>
+        <div class="status-item" data-categoria="outros">
+            <div class="status-circle"><span>🐾</span></div>
+            <p>Outros</p>
+        </div>
+    </div>
+
+    <div class="home-card">
+        <h2>Olá, tutor! 👋</h2>
+        <p class="subtitulo">Gerencie todos os seus pets em um só lugar</p>
+    </div>
+
+    <div class="pets-container">
+        <p class="texto-vazio">Nenhum pet cadastrado ainda 🐾</p>
+        <div class="pets-grid" id="petsGrid"></div>
+    </div>
+
+</div>
+
+<!-- CAIXA DE NOTIFICAÇÃO -->
+<div id="caixaNotificacao" class="caixa-notificacao">
+    <div class="conteudo-notificacao">
+        <p id="textoNotificacao">Você não tem novas notificações 🔔</p>
+        <button class="btn-ok">OK</button>
+    </div>
+</div>
+
+<svg style="position:absolute;width:0;height:0;">
+  <filter id="frosted" primitiveUnits="objectBoundingBox">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="0.02" result="blur"/>
+    <feDisplacementMap id="disp" in="blur" in2="map" scale="1" xChannelSelector="R" yChannelSelector="G">
+      <animate attributeName="scale" to="1.4" dur="0.3s" begin="btnAdd.mouseover" fill="freeze"/>
+      <animate attributeName="scale" to="1" dur="0.3s" begin="btnAdd.mouseout" fill="freeze"/>
+    </feDisplacementMap>
+  </filter>
+</svg>
+
+<!-- BARRA DE NAVEGAÇÃO INFERIOR -->
+<nav class="barra-navegacao">
+    <div class="grupo-botoes">
+        <button class="nav-btn" data-link="home.html">
+            <img src="img/icone-home.png" alt="Início" style="width: 32px; height: 32px;">
+        </button>
+        
+        <button class="nav-btn" data-link="calendario.html">
+            <img src="img/icone-calendario.png" alt="Calendário" style="width: 32px; height: 32px;">
+        </button>
+    </div>
+
+    <button id="btnAdd" class="btn-adicionar-central">+</button>
+
+    <div class="grupo-botoes">
+        <button class="nav-btn" data-link="medicamentos.html">
+            <img src="img/icone-remedio.png" alt="Medicamentos" style="width: 32px; height: 32px;">
+        </button>
+        
+        <button class="nav-btn" data-link="analise.html">
+            <img src="img/icone-analise.png" alt="Análise" style="width: 32px; height: 32px;">
+        </button>
+    </div>
+</nav>
+<!-- OVERLAY CADASTRO -->
+<div class="overlay-cadastro" id="overlayCadastro">
+    <div class="container-cadastro-pet">
+        <span class="fechar-cadastro" id="fecharCadastro">&times;</span>
+        <h2>Novo Pet 🐾</h2>
+
+        <form id="formPet">
+            <div class="input-group">
+                <input required type="text" id="nome">
+                <label for="nome">Nome do Pet</label>
+            </div>
+
+            <!-- ✅ LISTA SUSPENSA - CÓDIGO CORRIGIDO E SEM ERROS -->
+            <div class="input-group" id="tipo">
+                <!-- Esse é o botão que abre a lista -->
+                <div class="lista-suspensa-wrapper">
+                    <button type="button" class="botao-lista" id="botaoLista">
+                        <span id="textoSelecionado">Tipo</span>
+                        <i class="fa fa-chevron-down"></i>
+                    </button>
+
+                    <!-- A lista que abre embaixo - ROXA, GRUDADA E PEQUENA -->
+                    <div class="lista-opcoes-personalizada" id="listaOpcoes">
+                        <div class="opcao-item selecionado" data-valor="cachorro">
+                            <div class="radio-btn"></div>
+                            <span>🐶 Cachorro</span>
+                        </div>
+                        <div class="opcao-item" data-valor="gato">
+                            <div class="radio-btn"></div>
+                            <span>🐱 Gato</span>
+                        </div>
+                        <div class="opcao-item" data-valor="outro">
+                            <div class="radio-btn"></div>
+                            <span>🪴 Outro</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Campo OCULTO que vai guardar o valor para enviar no formulário -->
+                <input type="hidden" id="tipo" name="tipo" value="cachorro">
+                <label for="tipo">Tipo</label>
+            </div>
+                        <div class="input-group">
+                <!-- ✅ CAMPO SEXO -->
+                <div class="lista-suspensa-wrapper">
+                    <button type="button" class="botao-lista" id="botaoListaSexo">
+                        <span id="textoSelecionadoSexo">Sexo</span>
+                        <i class="fa fa-chevron-down"></i>
+                    </button>
+                    <div class="lista-opcoes-personalizada" id="listaOpcoesSexo">
+                        <div class="opcao-item selecionado" data-valor="macho">
+                            <div class="radio-btn"></div>
+                            <span>♂️ Macho</span>
+                        </div>
+                        <div class="opcao-item" data-valor="femea">
+                            <div class="radio-btn"></div>
+                            <span>♀️ Fêmea</span>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" id="sexo" name="sexo" value="macho">
+                <label for="sexo">Sexo</label>
+            </div>
+
+            <div class="input-group">
+                <input required type="text" id="raca">
+                <label for="raca">Raça</label>
+            </div>
+            
+            <div class="input-group">
+                <input required type="text" id="peso" placeholder="0.00">
+                <label for="peso">Peso (kg)</label>
+            </div>
+            
+            <div class="input-group">
+                <input required type="text" id="cor">
+                <label for="cor">Cor</label>
+            </div>
+
+            <div class="input-group">
+                <input required type="date" id="nascimento">
+                <label for="date">Data de Nascimento</label>
+            </div>
+
+            <div class="input-group">
+                <input required type="text" id="foto" placeholder="Link da imagem">
+                <label for="foto">URL da Foto</label>
+            </div>
+            <div class="input-group">
+                <input required type="text" id="observacoes">
+                <label for="observacoes">Observações</label>
+            </div>
+           
+            <button type="submit" class="btn-salvar">Salvar Pet 🐾</button>
+        </form>
+    </div>
+</div>
+
+<!-- ✅ SCRIPTS NA ORDEM CERTA -->
+<script src="zscript-geral.js"></script>
+<script src="home-script.js"></script>
+
+</body>
+</html>

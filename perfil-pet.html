@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Pet</title>
+    <link rel="stylesheet" href="zstyle.css">
+    <link rel="stylesheet" href="perfil-pet-style.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="zfirebase-config.js"></script>
+</head>
+<body>
+
+<!-- ✅ FUNDO + AURORA DE COR DINÂMICA -->
+<div class="bg">
+  <img src="https://img.magnific.com/vetores-gratis/fundo-de-impressoes-de-patas-desenhadas-a-mao_23-2151123098.jpg?semt=ais_hybrid&w=740&q=80" alt="Patas de cachorro">
+</div>
+<div class="fundo-overlay"></div>
+
+<!-- CONTAINER EDIÇÃO OCULTO -->
+<div id="containerEdicao" class="overlay-cadastro" style="display: none;">
+    <div class="container-cadastro-pet">
+        <span class="fechar-cadastro" id="btnFecharEditar">&times;</span>
+        <h2>Editar Dados</h2>
+
+        <input type="text" id="editaTipo" placeholder="Tipo (Cão/Gato)">
+        <input type="text" id="editaRaca" placeholder="Raça">
+        <input type="text" id="editaNome" placeholder="Nome">
+        <input type="text" id="editaNascimento" placeholder="AAAA-MM-DD (ex: 2020-05-15)">
+        <input type="number" id="editaPeso" placeholder="Peso kg">
+        <input type="text" id="editaCor" placeholder="Cor/Pelagem">
+        <input type="text" id="editaGenero" placeholder="Gênero (Macho/Fêmea)">
+        <textarea id="editaObservacoes" placeholder="Observações"></textarea>
+        <input type="text" id="editaFoto" placeholder="Link da foto">
+
+        <button id="btnSalvarEdicao" class="btn-salvar">Salvar Alterações</button>
+    </div>
+</div>
+
+<header class="cabecalho-perfil">
+    <button class="btn-voltar" id="btnVoltar">←</button>
+    <h1 class="nome-app">Perfil do Pet</h1>
+    <button class="btn-editar" id="btnEditar">✏️</button>
+</header>
+
+<!-- ✅ CARD PRINCIPAL COM CLASSE DE GÊNERO -->
+<div class="perfil-card masculino">
+
+    <!-- FOTO DE CAPA -->
+    <div class="capa-pet">
+        <img id="fotoPet" src="img/default.png" alt="Foto do pet">
+    </div>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="conteudo-perfil">
+
+        <!-- NOME E TIPO -->
+        <div class="info-principal">
+            <h1 id="nomePet">Carregando...</h1>
+            <p id="tipoRaca">Tipo • Raça</p>
+            <p id="nascimentoSigno">Nascido em: --/--/---- | Signo: --</p>
+        </div>
+
+        <!-- ✅ CARDS DE DADOS - LADO A LADO -->
+        <div class="lista-dados">
+            <div class="item-dado">
+                <h3 id="pesoPet" class="valor-dado">-- kg</h3>
+                <p class="label-dado">Peso</p>
+            </div>
+            <div class="item-dado">
+                <h3 id="corPet" class="valor-dado">--</h3>
+                <p class="label-dado">Cor</p>
+            </div>
+            <div class="item-dado">
+                <h3 id="idadePet" class="valor-dado">--</h3>
+                <p class="label-dado">Idade</p>
+            </div>
+        </div>
+
+        <!-- SEÇÃO SAÚDE -->
+        <div class="secao">
+            <div class="secao-titulo">
+                <span>🩺</span>
+                <h2>Saúde / Observações</h2>
+            </div>
+            <p id="observacoesPet" class="texto-secao">Carregando...</p>
+        </div>
+
+        <!-- SEÇÃO VACINAS -->
+        <div class="secao">
+            <div class="secao-titulo">
+                <span>💉</span>
+                <h2>Vacinas</h2>
+                <button class="btn-adicionar" id="btnAddVacina">+</button>
+            </div>
+            <p id="vacinasPet" class="texto-secao">Nenhuma vacina cadastrada.</p>
+        </div>
+
+        <!-- SEÇÃO LEMBRETES -->
+        <div class="secao">
+            <div class="secao-titulo">
+                <span>📅</span>
+                <h2>Lembretes</h2>
+                <button class="btn-adicionar" id="btnAddLembrete">+</button>
+            </div>
+            <p id="lembretesPet" class="texto-secao">Nenhum lembrete cadastrado.</p>
+        </div>
+
+    </main>
+</div>
+
+<script src="perfil-pet-script.js"></script>
+</body>
+</html>

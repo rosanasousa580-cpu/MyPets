@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyPets | Login</title>
+
+    <!-- ✅ BIBLIOTECAS DO FIREBASE (ESTAVA FALTANDO ESSA PARTE!) -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+    <!-- ✅ ARQUIVOS GERAIS -->
+    <link rel="stylesheet" href="zstyle.css">
+    <script src="zfirebase-config.js"></script>
+
+    <!-- ✅ ARQUIVOS DA PÁGINA -->
+    <link rel="stylesheet" href="index-style.css">
+</head>
+<body class="tela-login">
+
+    <!-- FUNDO ANIMADO -->
+    <div class="bg">
+        <img src="img/fundo-patas.png" alt="">
+    </div>
+
+    <!-- TELA DE LOGIN -->
+    <div class="login-card" id="cardLogin">
+        <h1 class="titulo-login">MyPets</h1>
+
+        <div class="input-group">
+            <input type="email" id="email" placeholder="Digite seu e-mail">
+        </div>
+
+        <div class="input-group">
+            <input type="password" id="senha" placeholder="Digite sua senha">
+            <img src="img/olho-fechado.png" class="icone-senha" id="olho" onclick="mostrarSenha()">
+        </div>
+
+        <button class="btn-entrar" onclick="logarUsuario()">Entrar</button>
+
+        <button class="btn-google" onclick="entrarComGoogle()">
+            <img src="https://w7.pngwing.com/pngs/344/344/png-transparent-google-logo-google-logo-g-suite-google-text-logo-symbol-thumbnail.png" width="20">
+            Entrar com Google
+        </button>
+
+        <div class="links-form">
+            <a href="#">Esqueceu sua senha?</a>
+            <p>Não tem conta? <a href="#" id="abrirCadastro">Cadastre-se</a></p>
+        </div>
+    </div>
+
+
+    <!-- TELA DE CADASTRO -->
+    <div class="login-card" id="cardCadastro" style="display: none;">
+        <h1 class="titulo-login">Cadastrar</h1>
+
+        <div class="input-group">
+            <input type="text" id="nomeCad" placeholder="Seu nome completo">
+        </div>
+
+        <div class="input-group">
+            <input type="email" id="emailCad" placeholder="E-mail">
+        </div>
+
+        <div class="input-group">
+            <input type="password" id="senhaCad" placeholder="Criar senha">
+        </div>
+
+        <div class="input-group">
+            <input type="password" id="confirmaSenhaCad" placeholder="Confirmar senha">
+        </div>
+
+        <button class="btn-entrar" onclick="cadastrarUsuario()">Cadastrar</button>
+
+        <div class="links-form">
+            <a href="#" id="voltarLogin">Já tem conta? Voltar</a>
+        </div>
+    </div>
+
+
+    <!-- ✅ SCRIPT DA PÁGINA -->
+    <script src="index-script.js"></script>
+</body>
+</html>

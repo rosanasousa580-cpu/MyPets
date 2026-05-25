@@ -1,0 +1,347 @@
+/* ============================================== */
+/* 📄 PERFIL - INTEGRADO AO CSS GERAL */
+/* ============================================== */
+
+/* ✅ HERDANDO CONFIGURAÇÕES GERAIS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    color: #fff;
+    position: relative;
+    overflow-x: hidden;
+    /* Herda o gradiente do geral */
+    background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+    background-attachment: fixed;
+    line-height: 1.5;
+}
+
+/* ✅ FUNDO PADRÃO DO SISTEMA */
+.bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.12;
+    pointer-events: none;
+}
+
+.bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.cabecalho-perfil {
+    width: 100%;
+    height: 65px;
+    background: rgba(15, 10, 30, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+
+    /* ✅ NOVO: Começa escondido acima da tela */
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+}
+
+/* ✅ CLASSE PARA MOSTRAR */
+.cabecalho-perfil.visivel {
+    transform: translateY(0);
+}
+
+/* ✅ Ajusta o conteúdo pra não ficar embaixo quando aparecer */
+.conteudo-perfil {
+    padding-top: 20px;
+}
+
+
+.btn-voltar, .btn-editar {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-voltar:hover, .btn-editar:hover {
+    background: rgba(177, 0, 243, 0.3); /* Cor roxa padrão do sistema */
+    transform: scale(1.05);
+}
+
+.nome-app {
+    font-size: 18px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #fff, #b4a7ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ============================================== */
+/* 📌 CONTEÚDO PRINCIPAL */
+/* ============================================== */
+.conteudo-perfil {
+    padding: 25px 20px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* 📸 FOTO DE PERFIL */
+.foto-perfil-usuario {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.foto-perfil-usuario img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid rgba(177, 0, 243, 0.5); /* Borda roxa padrão */
+    box-shadow: 0 0 20px rgba(177, 0, 243, 0.2);
+    object-fit: cover;
+    background: rgba(255,255,255,0.1);
+}
+
+#nomeUsuario {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: #ffffff;
+}
+
+.email-usuario {
+    text-align: center;
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 30px !important;
+}
+
+/* ============================================== */
+/* 📋 SEÇÕES - MESMO ESTILO DOS CARDS DO SISTEMA */
+/* ============================================== */
+.secao {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px; /* Mesmo arredondamento */
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.secao-titulo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 18px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.secao-titulo h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #b4a7ff; /* Lilás padrão */
+}
+
+.info-linha {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.info-linha:last-child {
+    border-bottom: none;
+}
+
+.info-linha strong {
+    color: rgba(255,255,255,0.8);
+}
+
+.info-linha span {
+    color: #ffffff;
+    font-weight: 500;
+    text-align: right;
+}
+
+/* ============================================== */
+/* 🔘 BOTÕES - PADRÃO DO GERAL */
+/* ============================================== */
+.btn-opcao {
+    width: 100%;
+    padding: 13px 15px;
+    margin: 8px 0;
+    border-radius: 10px; /* Mesmo arredondamento dos botões */
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    text-align: left;
+}
+
+.btn-opcao:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+#btnTrocarSenha:hover {
+    background: rgba(155, 89, 182, 0.3);
+    border-color: #9b59b6;
+}
+
+.btn-sair {
+    background: rgba(255, 0, 0, 0.1);
+    border-color: rgba(255, 0, 0, 0.3);
+}
+
+.btn-sair:hover {
+    background: rgba(255, 0, 0, 0.25);
+    border-color: #ff4444;
+}
+
+/* ============================================== */
+/* 📝 MODAL - IGUAL AO OVERLAY DE EVENTOS/TEMPO */
+/* ============================================== */
+.overlay-editar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75); /* Mesma transparência */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999; /* Acima de tudo */
+    padding: 20px;
+}
+
+.container-editar {
+    background: linear-gradient(135deg, #1e1e30, #2a2a40);
+    border-radius: 16px;
+    padding: 25px;
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid rgba(177, 0, 243, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.container-editar h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #b4a7ff;
+    font-size: 18px;
+}
+
+.form-grupo {
+    margin-bottom: 15px;
+}
+
+.form-grupo label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.form-grupo input {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.form-grupo input:focus {
+    border-color: #B100F3; /* Roxo principal */
+    box-shadow: 0 0 0 2px rgba(177, 0, 243, 0.2);
+}
+
+.botoes-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-salvar, .btn-cancelar {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+}
+
+.btn-salvar {
+    background: linear-gradient(135deg, #9b59b6, #B100F3); /* Gradiente padrão */
+    color: #ffffff;
+}
+
+.btn-salvar:hover {
+    transform: scale(1.03);
+}
+
+.btn-cancelar {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+.btn-cancelar:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* ============================================== */
+/* 📱 RESPONSIVO - IGUAL AO GERAL */
+/* ============================================== */
+@media (max-width: 480px) {
+    .conteudo-perfil {
+        padding: 15px;
+    }
+
+    .secao {
+        padding: 15px;
+    }
+
+    .container-editar {
+        padding: 20px;
+    }
+}
