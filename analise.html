@@ -1,19 +1,92 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="zstyle.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise & Estatísticas</title>
+    <link rel="stylesheet" href="estilo.css">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval' data: blob:; script-src * 'unsafe-inline' 'unsafe-eval'; style-src * 'unsafe-inline';">
+    
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="zfirebase-config.js"></script>
+
+    <link rel="stylesheet" href="zstyle.css">
     <link rel="stylesheet" href="analise-style.css">
-  <title>analise</title>
+    <!-- Gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
 </head>
-
 <body>
-  <div class="nome">
-        <h2>analise 👋</h2>
-        <p class="subtitulo">⚠️EM MANUTENÇÃO⚠️</p>
-    </div>
-</body>
 
+<!-- ✅ CABEÇALHO -->
+<header class="cabecalho-perfil">
+    <button class="btn-voltar" onclick="window.history.back()">←</button>
+    <h1 class="nome-app">Análise</h1>
+    <div></div>
+</header>
+
+<!-- ✅ FUNDO -->
+<div class="bg">
+    <img src="https://img.magnific.com/vetores-gratis/fundo-de-impressoes-de-patas-desenhadas-a-mao_23-2151123098.jpg?semt=ais_hybrid&w=740&q=80" alt="Patas">
+</div>
+
+<main class="conteudo-perfil" style="margin-top: 80px; padding-bottom: 40px;">
+
+    <!-- 🟢 CARTOES RESUMO -->
+    <div class="cards-dados">
+        <div class="card-dado card-roxo">
+            <h3 id="totalPets">0</h3>
+            <p>Pets Cadastrados</p>
+        </div>
+        <div class="card-dado card-roxo-escuro">
+            <h3 id="idadeMedia">0</h3>
+            <p>Idade Média (anos)</p>
+        </div>
+        <div class="card-dado card-rosa">
+            <h3 id="aniversariantes">0</h3>
+            <p>Aniversários (mês)</p>
+        </div>
+    </div>
+
+    <!-- 🟡 GRÁFICO TIPO -->
+    <div class="secao">
+        <div class="secao-titulo">
+            <span>📊</span>
+            <h2>Distribuição por Tipo</h2>
+        </div>
+        <div class="cartao-grafico">
+            <canvas id="graficoTipo" width="250" height="250"></canvas>
+        </div>
+    </div>
+
+    <!-- 🟣 GRÁFICO SEXO -->
+    <div class="secao">
+        <div class="secao-titulo">
+            <span>⚧️</span>
+            <h2>Por Sexo</h2>
+        </div>
+        <div class="cartao-grafico">
+            <canvas id="graficoSexo" width="250" height="250"></canvas>
+        </div>
+    </div>
+
+    <!-- 🔵 LISTA ANIVERSÁRIOS -->
+    <div class="secao">
+        <div class="secao-titulo">
+            <span>🎂</span>
+            <h2>Próximos Aniversários</h2>
+        </div>
+        <div class="cartao-lista">
+            <ul id="listaAniversarios">
+                <li class="texto-vazio">Carregando dados...</li>
+            </ul>
+        </div>
+    </div>
+
+</main>
+<script src="zscript-geral.js"></script>
+<script src="analise-script.js"></script>
+</body>
 </html>
